@@ -1,0 +1,2 @@
+# SQL-Genius-Natural-Language-to-SQL-with-Gemini-Streamlit
+SQL-Genius is a Streamlit-powered application that transforms natural language questions into accurate SQL queries using Google Gemini (via LangChain). It executes the queries on a MySQL-based retail sales database and displays the results instantly. Ideal for non-technical users who want insights from structured data without writing any SQL.
