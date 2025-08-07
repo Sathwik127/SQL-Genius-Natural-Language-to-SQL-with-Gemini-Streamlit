@@ -1,115 +1,122 @@
-# SQL-Genius-Natural-Language-to-SQL-with-Gemini-Streamlit
-SQL-Genius is a Streamlit-powered application that transforms natural language questions into accurate SQL queries using Google Gemini (via LangChain). It executes the queries on a MySQL-based retail sales database and displays the results instantly. Ideal for non-technical users who want insights from structured data without writing any SQL.
-# 🧠 SQL-Genius: Natural Language to SQL with Gemini + Streamlit
+# 💡 Gemini-Powered SQL Query Generator (Streamlit + LangChain)
 
-**SQL-Genius** is a natural language interface to structured data. It takes your question in plain English, converts it into SQL using **Google Gemini (via LangChain)**, runs it on a **MySQL database**, and displays the results—all through a simple **Streamlit** web UI.
+This is a lightweight Streamlit-based application that lets users **ask questions in plain English**, which are then **converted to SQL queries using Google's Gemini-1.5-Flash LLM**. The query is executed on a connected **MySQL database**, and the results are displayed on the screen.
 
 ---
 
 ## 🚀 Features
 
-- 💬 Ask questions like:  
-  `"What were the top 5 products sold last month?"`  
-  `"Show total sales by region for Q1 2024."`
-
-- 🤖 Powered by **Google Gemini 1.5 Flash** for generating SQL.
-
-- 🧠 Uses **LangChain** for LLM chaining and SQL generation.
-
-- 🗄️ Connects to a **MySQL retail_sales_db** with SQLAlchemy.
-
-- 📊 Displays query + result interactively via **Streamlit**.
+- 🌐 Converts natural language questions into SQL using **LangChain** + **GoogleGenerativeAI**
+- 🛢️ Executes the generated query on a **MySQL database** via **SQLAlchemy**
+- ⚡ Displays both the generated SQL and the query results on the UI
+- 📦 Uses `dotenv` to load Gemini API Key from `.env`
+- 🧠 Powered by **Gemini-1.5-Flash**
+- 🖥️ Simple and clean **Streamlit UI**
 
 ---
 
-## 📦 Tech Stack
+## 🛠️ Tech Stack
 
-| Component    | Description                      |
-|--------------|----------------------------------|
-| LangChain    | LLM-based SQL generation         |
-| Google Gemini| LLM provider                     |
-| Streamlit    | Front-end web app UI             |
-| SQLAlchemy   | Database connection              |
-| MySQL        | Relational database (retail)     |
-| Python dotenv| For secure API key management    |
+- Python 🐍
+- Streamlit
+- LangChain
+- Google Generative AI (Gemini-1.5-Flash)
+- SQLAlchemy
+- MySQL (via PyMySQL)
+- dotenv
 
 ---
 
-## 🔧 Setup Instructions
+## 📁 File Structure
 
-### 1. Clone the Repo
+```
+project/
+├── main.py               # Your main Streamlit app file
+├── .env                  # Holds your Gemini API Key
+└── README.md             # This file
+```
 
-```bash
-git clone https://github.com/your-username/sql-genius.git
-cd sql-genius
-2. Create Virtual Environment (optional but recommended)
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-3. Install Dependencies
-bash
-Copy code
-pip install -r requirements.txt
-4. Set Up .env
-Create a .env file in the root folder:
+---
 
-env
-Copy code
-GEMINI_API_KEY=your_google_api_key
-Make sure you have access to Google Generative AI and have enabled the Gemini API.
+## 🔑 .env Format
 
-5. Configure MySQL Connection
-Edit app.py with your MySQL credentials:
+Create a `.env` file in the root directory and add:
 
-python
-Copy code
-db_user = "root"
-db_password = "yourpassword"
-db_host = "localhost"
-db_name = "retail_sales_db"
-▶️ Run the App
-bash
-Copy code
-streamlit run app.py
-Then open your browser to http://localhost:8501
+```
+GEMINI_API_KEY=your_google_gemini_api_key
+```
 
-🧪 Example Usage
-Question: "What are the top 3 selling products by revenue?"
+---
 
-Generated SQL: SELECT product_name, SUM(revenue) FROM sales GROUP BY product_name ORDER BY SUM(revenue) DESC LIMIT 3;
+## 🧑‍💻 Setup Instructions
 
-Result: (Displayed in Streamlit UI)
+1. **Clone the repository** (or copy the code into a Python file):
 
-📄 requirements.txt
-nginx
-Copy code
-streamlit
-langchain
-langchain-community
-langchain-core
-langchain-google-genai
-sqlalchemy
-pymysql
-python-dotenv
-Save this as requirements.txt and install using:
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    ```
 
-bash
-Copy code
-pip install -r requirements.txt
-📌 Notes
-Supports only MySQL out-of-the-box (can be extended to Postgres or SQLite).
+2. **Install dependencies**:
 
-Make sure your DB is running and populated with data before using the app.
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-sample_rows_in_table_info=3 is used to assist Gemini with schema comprehension.
+    Or install individually:
 
-📄 License
-This project is for academic and educational purposes.
-All external packages and APIs follow their respective licenses.
+    ```bash
+    pip install streamlit langchain sqlalchemy pymysql python-dotenv langchain-google-genai langchain-community
+    ```
 
-👤 Author
-[Your Name]
-Capstone Project – [Your Institution or Course]
-GitHub: @your-username
+3. **Set up your MySQL Database**:
 
+    Ensure you have a MySQL database running with the following credentials:
+
+    ```
+    user:     root
+    password: Sathwik
+    host:     localhost
+    database: retail_sales_db
+    ```
+
+4. **Run the App**:
+
+    ```bash
+    streamlit run main.py
+    ```
+
+---
+
+## 📷 App Preview
+
+> 👤 **User enters a natural language question** like:
+>  
+> _"What are the total sales for each product in the last month?"_
+
+🔁 The app:
+
+- Sends the question to Gemini via LangChain
+- Gemini responds with a SQL query
+- Query is run on your MySQL DB
+- Results are shown neatly in the UI
+
+---
+##Screenshot
+Once you run this you will see this
+<img width="778" height="139" alt="image" src="https://github.com/user-attachments/assets/b5dca2d4-3543-4af6-9dbb-70f6a3372c39" />
+your front end is this
+<img width="1174" height="561" alt="image" src="https://github.com/user-attachments/assets/2064ed9d-3b8d-4083-866a-206f2c2047a9" />
+once you ask the question it gonna retreive information from our SQL database through SQL query you will get the answer
+<img width="1270" height="711" alt="image" src="https://github.com/user-attachments/assets/02a7c907-089a-464c-84b3-0b3296a3c9ed" />
+
+
+
+## ⚠️ Error Handling
+
+If the SQL execution fails (e.g., due to a bad query or wrong DB schema), the app catches the `ProgrammingError` and shows a user-friendly message in Streamlit.
+
+---
+
+
+Crafted for demonstration and interview readiness by someone who codes with ❤️ and curiosity.
